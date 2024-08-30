@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1226127862329624043, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: m_Name
-      value: Digger Variant
+      value: Digger
       objectReference: {fileID: 0}
     - target: {fileID: 1658050999127335564, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: m_LocalScale.x
@@ -59,6 +59,18 @@ PrefabInstance:
     - target: {fileID: 1658050999127335564, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4476318672392285695, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
+      propertyPath: damage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125380728395249323, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
+      propertyPath: max
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125380728395249323, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
+      propertyPath: maxFragmentsDropped
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7450227866032895327, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: m_Color.b

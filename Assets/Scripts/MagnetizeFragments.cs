@@ -25,11 +25,12 @@ public class MagnetizeFragments : MonoBehaviour
 
     IEnumerator PickupFragment(Transform fragment)
     {
-        Debug.Log("f1 " + fragment);
         yield return fragment.DOMove(transform.position, magnetPickupTime).SetEase(Ease.Linear).WaitForCompletion();
-        Debug.Log("f2 " + fragment);
 
-        Destroy(fragment.gameObject);
-        BuildStructures.resources++;
+        if (fragment != null)
+        {
+            Destroy(fragment.gameObject);
+            BuildStructures.resources++;
+        }
     }
 }

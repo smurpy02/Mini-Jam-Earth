@@ -24,6 +24,7 @@ public class Structure
     public GameObject structure;
     public Transform ghost;
     public int cost;
+    public TextMeshProUGUI costText;
 }
 
 public class BuildStructures : MonoBehaviour
@@ -31,38 +32,39 @@ public class BuildStructures : MonoBehaviour
     static int _resources = 50;
     GameObject selectedStructure;
     Transform structureGhost;
-    Structure activeStructure;
+    int activeStructure;
 
     public static int resources { get { return _resources; } set { _resources = value; } }
+    public bool isBuilding { get { return activeStructure >= 0; } }
 
     public InputActionReference place;
     public Transform core;
     public TextMeshProUGUI fragments;
     public Movement movement;
+    public float costMultiplier = 1.5f;
 
     public List<Structure> structures;
 
     // Update is called once per frame
     void Update()
     {
-        movement.enabled = activeStructure == null;
+        movement.enabled = activeStructure == -1;
         if(!movement.enabled) movement.body.velocity = Vector3.zero;
 
-        fragments.text = "Fragments: " + resources;
+        foreach( Structure structure in structures)
+        {
+            structure.costText.text = structure.cost.ToString("0");
+        }
+
+        fragments.text = resources.ToString("0");
 
         if (structureGhost != null)
         {
             Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             position.z = 0;
 
-            //Vector3 corePosition = core.position;
-            //corePosition.z = 0;
-
-            //var dir = corePosition - position;
-            //var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-
             structureGhost.position = position;
-            structureGhost.rotation = Rotations.GetRotation(position, core.position);//Quaternion.AngleAxis(angle, Vector3.forward);
+            structureGhost.rotation = Rotations.GetRotation(position, core.position);
 
             PlaceStructure();
         }
@@ -70,7 +72,7 @@ public class BuildStructures : MonoBehaviour
 
     public void SetStructureNone()
     {
-        SetStructure(null);
+        SetStructure(-1);
     }
 
     public void SetStructureFromList(int index)
@@ -82,17 +84,19 @@ public class BuildStructures : MonoBehaviour
             return;
         }
 
-        SetStructure(structure);
+        SetStructure(index);
     }
 
-    void SetStructure(Structure structure)
+    void SetStructure(int index)
     {
-        if (structure == null) { selectedStructure = null; structureGhost = null; activeStructure = null; return; }
+        if (index == -1) { structureGhost.gameObject.SetActive(false);  selectedStructure = null; structureGhost = null; activeStructure = -1; return; }
+        
+        Structure structure = structures[index];
 
         if (structureGhost !=null ) structureGhost.gameObject.SetActive(false);
         selectedStructure = structure.structure;
         structureGhost = structure.ghost;
-        activeStructure = structure;
+        activeStructure = index; ;
         if (structureGhost != null) structureGhost.gameObject.SetActive(true);
     }
 
@@ -102,11 +106,12 @@ public class BuildStructures : MonoBehaviour
         placeStructure &= place.action.WasPressedThisFrame();
         placeStructure &= selectedStructure != null;
         placeStructure &= structureGhost.GetComponentInChildren<ValidPlacementCheck>().isValid;
-        placeStructure &= activeStructure.cost <= resources;
+        placeStructure &= structures[activeStructure].cost <= resources;
 
         if (!placeStructure) return;
 
-        _resources -= activeStructure.cost;
+        _resources -= structures[activeStructure].cost;
+        structures[activeStructure].cost = (int)((float)structures[activeStructure].cost * costMultiplier);
 
         Instantiate(selectedStructure, structureGhost.position, structureGhost.rotation, core);
     }

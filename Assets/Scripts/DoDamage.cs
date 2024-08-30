@@ -10,6 +10,11 @@ public class DoDamage : MonoBehaviour
 
     void OnTriggerEnter2D (Collider2D other)
     {
+        if (other.GetComponent<GoalHealth>() != null)
+        {
+            return;
+        }
+
         Health health = other.GetComponentInChildren<Health>();
 
         if (health != null)

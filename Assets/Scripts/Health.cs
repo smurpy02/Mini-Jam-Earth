@@ -8,6 +8,8 @@ public class Health : MonoBehaviour
 
     int health;
 
+    public int currentHealth { get {  return health; } }
+
     private void Awake()
     {
         health = max;
@@ -16,6 +18,7 @@ public class Health : MonoBehaviour
     public void Damage(int damage)
     {
         health -= damage;
+        TakeDamage();
 
         if (health <= 0)
         {
@@ -24,6 +27,11 @@ public class Health : MonoBehaviour
     }
 
     public virtual void Die()
+    {
+
+    }
+
+    public virtual void TakeDamage()
     {
 
     }

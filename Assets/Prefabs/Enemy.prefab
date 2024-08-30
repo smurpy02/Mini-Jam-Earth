@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5125380728395249323}
   - component: {fileID: 4869835121650911925}
   - component: {fileID: 738019223077403882}
+  - component: {fileID: 4476318672392285695}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -145,10 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b0f0a98fc9ad247aeda29daebbfa01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max: 15
+  max: 10
   deathParticles: {fileID: 6168424827022212815, guid: c43013326f25c0846ac4be3521040a5d, type: 3}
   fragment: {fileID: 8213947038371232151, guid: c0a97e33bd324c9438b5920a1f57d268, type: 3}
-  maxFragmentsDropped: 4
+  maxFragmentsDropped: 6
 --- !u!114 &4869835121650911925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,3 +191,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &4476318672392285695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226127862329624043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2444d14342ef1284a837b9d99f01a946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
