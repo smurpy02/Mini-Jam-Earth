@@ -19,4 +19,9 @@ public class GoalHealth : Health
         scale.x = (float)currentHealth / max;
         healthBar.transform.localScale = scale;
     }
+
+    void Update()
+    {
+        Heal(0.2f * Time.deltaTime);
+    }
 }

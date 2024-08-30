@@ -14,11 +14,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1658050999127335564, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.45
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1658050999127335564, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.45
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 1658050999127335564, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64,13 +64,21 @@ PrefabInstance:
       propertyPath: damage
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4869835121650911925, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
+      propertyPath: speed
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5125380728395249323, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: max
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5125380728395249323, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: maxFragmentsDropped
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125380728395249323, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
+      propertyPath: maxBlueprintsDropped
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7450227866032895327, guid: 485a48d7565d219449c3d2930db48d94, type: 3}
       propertyPath: m_Color.b

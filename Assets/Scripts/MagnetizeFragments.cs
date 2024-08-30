@@ -14,23 +14,39 @@ public class MagnetizeFragments : MonoBehaviour
         {
             float distance = Vector3.Distance(transform.position, fragment.transform.position);
 
-            Debug.Log("frag distance " + distance);
+            if (distance < magnetStrengthDistance)
+            {
+                StartCoroutine(PickupItem(fragment.transform, false));
+            }
+        }
+
+        foreach (GameObject blueprint in GameObject.FindGameObjectsWithTag("Blueprint"))
+        {
+            float distance = Vector3.Distance(transform.position, blueprint.transform.position);
 
             if (distance < magnetStrengthDistance)
             {
-                StartCoroutine(PickupFragment(fragment.transform));
+                StartCoroutine(PickupItem(blueprint.transform, true));
             }
         }
     }
 
-    IEnumerator PickupFragment(Transform fragment)
+    IEnumerator PickupItem(Transform item, bool blueprint)
     {
-        yield return fragment.DOMove(transform.position, magnetPickupTime).SetEase(Ease.Linear).WaitForCompletion();
+        yield return item.DOMove(transform.position, magnetPickupTime).SetEase(Ease.Linear).WaitForCompletion();
 
-        if (fragment != null)
+        if (item != null)
         {
-            Destroy(fragment.gameObject);
-            BuildStructures.resources++;
+            Destroy(item.gameObject);
+
+            if (blueprint)
+            {
+                BuildStructures.blueprints++;
+            }
+            else
+            {
+                BuildStructures.resources++;
+            }
         }
     }
 }

@@ -5,9 +5,12 @@ using UnityEngine;
 public class EnemyHealth : Health
 {
     public GameObject deathParticles;
+
     public GameObject fragment;
+    public GameObject blueprint;
 
     public int maxFragmentsDropped;
+    public int maxBlueprintsDropped;
 
     public override void Die()
     {
@@ -17,6 +20,12 @@ public class EnemyHealth : Health
         {
             Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
             Instantiate(fragment, transform.position, rotation);
+        }
+
+        for(int i = 0; i < Random.Range(0, maxBlueprintsDropped); i++)
+        {
+            Quaternion rotation = Quaternion.Euler(0, 0, Random.Range(0, 360));
+            Instantiate(blueprint, transform.position, rotation);
         }
 
         Destroy(gameObject);

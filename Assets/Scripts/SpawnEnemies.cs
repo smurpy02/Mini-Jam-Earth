@@ -11,7 +11,7 @@ public class SpawnEnemies
     public float minSpawnRate;
 
     public GameObject enemy;
-    public bool spawnAtStart = false;
+    public float firstSpawn;
 
     public float nextSpawn;
 }

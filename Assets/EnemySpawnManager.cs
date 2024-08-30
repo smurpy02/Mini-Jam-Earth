@@ -10,7 +10,7 @@ public class EnemySpawnManager : MonoBehaviour
     {
         foreach(var enemy in enemySpawners)
         {
-            enemy.nextSpawn = enemy.spawnAtStart ? 0 : Time.time + enemy.spawnRate;
+            enemy.nextSpawn = Time.time + enemy.firstSpawn;
         }
     }
 
@@ -22,7 +22,9 @@ public class EnemySpawnManager : MonoBehaviour
             {
                 enemy.nextSpawn = Time.time + enemy.spawnRate;
 
-                Instantiate(enemy.enemy, transform.position, transform.rotation);
+                Vector3 randomDir = Random.insideUnitCircle.normalized;
+
+                Instantiate(enemy.enemy, transform.position + randomDir*0.4f, Rotations.GetRotation(Vector3.zero, randomDir));
 
                 enemy.spawnRate = Mathf.Clamp(enemy.spawnRate * enemy.spawnIncreaseRate, enemy.minSpawnRate, Mathf.Infinity);
             }

@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.14769153, y: -2.7947032, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -149,7 +149,9 @@ MonoBehaviour:
   max: 10
   deathParticles: {fileID: 6168424827022212815, guid: c43013326f25c0846ac4be3521040a5d, type: 3}
   fragment: {fileID: 8213947038371232151, guid: c0a97e33bd324c9438b5920a1f57d268, type: 3}
+  blueprint: {fileID: 5369581640856306066, guid: 14925e5a9fd6cf5448e9cf325a5f9f6b, type: 3}
   maxFragmentsDropped: 6
+  maxBlueprintsDropped: 2
 --- !u!114 &4869835121650911925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 738019223077403882}
-  speed: 0.25
+  speed: 0.2
 --- !u!50 &738019223077403882
 Rigidbody2D:
   serializedVersion: 4
