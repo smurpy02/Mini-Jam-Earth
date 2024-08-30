@@ -147,6 +147,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max: 15
   deathParticles: {fileID: 6168424827022212815, guid: c43013326f25c0846ac4be3521040a5d, type: 3}
+  fragment: {fileID: 8213947038371232151, guid: c0a97e33bd324c9438b5920a1f57d268, type: 3}
+  maxFragmentsDropped: 4
 --- !u!114 &4869835121650911925
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,7 +4,19 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
+
+public class  Rotations
+{
+    public static Quaternion GetRotation(Vector3 target, Vector3 lookAt)
+    {
+        target.z = 0; lookAt.z = 0;
+        var dir = lookAt - target;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        return Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+}
 
 [Serializable]
 public class Structure
@@ -16,22 +28,26 @@ public class Structure
 
 public class BuildStructures : MonoBehaviour
 {
-    int _resources = 100;
+    static int _resources = 50;
     GameObject selectedStructure;
     Transform structureGhost;
     Structure activeStructure;
 
-    public int resources { get { return _resources; } }
+    public static int resources { get { return _resources; } set { _resources = value; } }
 
     public InputActionReference place;
     public Transform core;
     public TextMeshProUGUI fragments;
+    public Movement movement;
 
     public List<Structure> structures;
 
     // Update is called once per frame
     void Update()
     {
+        movement.enabled = activeStructure == null;
+        if(!movement.enabled) movement.body.velocity = Vector3.zero;
+
         fragments.text = "Fragments: " + resources;
 
         if (structureGhost != null)
@@ -39,14 +55,14 @@ public class BuildStructures : MonoBehaviour
             Vector3 position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             position.z = 0;
 
-            Vector3 corePosition = core.position;
-            corePosition.z = 0;
+            //Vector3 corePosition = core.position;
+            //corePosition.z = 0;
 
-            var dir = corePosition - position;
-            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            //var dir = corePosition - position;
+            //var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 
             structureGhost.position = position;
-            structureGhost.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            structureGhost.rotation = Rotations.GetRotation(position, core.position);//Quaternion.AngleAxis(angle, Vector3.forward);
 
             PlaceStructure();
         }
@@ -71,6 +87,8 @@ public class BuildStructures : MonoBehaviour
 
     void SetStructure(Structure structure)
     {
+        if (structure == null) { selectedStructure = null; structureGhost = null; activeStructure = null; return; }
+
         if (structureGhost !=null ) structureGhost.gameObject.SetActive(false);
         selectedStructure = structure.structure;
         structureGhost = structure.ghost;
