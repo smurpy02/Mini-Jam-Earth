@@ -13610,6 +13610,12 @@ MonoBehaviour:
     enemy: {fileID: 3360562304744544246, guid: bb787760c1ada3a45974e2f12c908970, type: 3}
     firstSpawn: 10
     nextSpawn: 0
+  - spawnRate: 15
+    spawnIncreaseRate: 0.9
+    minSpawnRate: 5
+    enemy: {fileID: 1500734101786243102, guid: 95659df4ca76da640834a1ae87db0ca2, type: 3}
+    firstSpawn: 180
+    nextSpawn: 0
 --- !u!1 &1321806947
 GameObject:
   m_ObjectHideFlags: 0
