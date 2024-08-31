@@ -69,8 +69,10 @@ public class BuildStructures : MonoBehaviour
             structure.button.SetActive(blueprints >= structure.blueprintsNeeded);
         }
 
+        int blueprintsNeeded = NextUpgradeBlueprintsNeeded();
+
         fragmentsText.text = resources.ToString("0");
-        blueprintsText.text = blueprints.ToString("0");
+        blueprintsText.text = blueprints.ToString("0") + (blueprintsNeeded == 0 ? "" : ("/" + blueprintsNeeded.ToString("0")));
 
         if (structureGhost != null)
         {
@@ -132,5 +134,18 @@ public class BuildStructures : MonoBehaviour
         structures[activeStructure].cost = (int)((float)structures[activeStructure].cost * costMultiplier);
 
         Instantiate(selectedStructure, structureGhost.position, structureGhost.rotation, core);
+    }
+
+    int NextUpgradeBlueprintsNeeded()
+    {
+        foreach(Structure structure in structures)
+        {
+            if(blueprints < structure.blueprintsNeeded)
+            {
+                return structure.blueprintsNeeded;
+            }
+        }
+
+        return 0;
     }
 }

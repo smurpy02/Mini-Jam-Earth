@@ -8,9 +8,20 @@ public class GoalHealth : Health
     public Transform healthBar;
     public AudioSource damageSound;
 
+    public Movement playerMovement;
+    public List<GameObject> deactivate;
+    public GameObject deathScreen;
+
     public override void Die()
     {
-        Debug.Log("THE END");
+        playerMovement.moveEnabled = false;
+        
+        foreach(GameObject go in deactivate)
+        {
+            go.SetActive(false);
+        }
+
+        deathScreen.SetActive(true);
     }
 
     public override void TakeDamage()

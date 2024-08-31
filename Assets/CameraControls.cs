@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class CameraControls : MonoBehaviour
 
     Vector3 startPosition;
 
+    float size;
+
     void Start()
     {
         startPosition = transform.position;
@@ -20,10 +23,15 @@ public class CameraControls : MonoBehaviour
 
     void Update()
     {
+        if(size != Camera.main.orthographicSize)
+        {
+            Camera.main.DOOrthoSize(size, 1);
+        }
+
         if (buildStructures.isBuilding)
         {
             transform.position = startPosition;
-            Camera.main.orthographicSize = buildingScale;
+            size = buildingScale;
         }
         else
         {
@@ -31,11 +39,11 @@ public class CameraControls : MonoBehaviour
 
             if (playerBody.velocity == Vector2.zero)
             {
-                Camera.main.orthographicSize = defaultScale;
+                size = defaultScale;
             }
             else
             {
-                Camera.main.orthographicSize = movingScale;
+                size = movingScale;
             }
         }
 
