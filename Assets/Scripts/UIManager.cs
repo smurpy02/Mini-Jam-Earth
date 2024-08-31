@@ -20,28 +20,14 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadSceneAsync(1);
     }
 
-    public void Status()
-    {
-        status.SetActive(true);
-    }
-
-    public void CloseStatus()
-    {
-        status.SetActive(false);
-    }
-
-    public void Config()
-    {
-        settings.SetActive(true);
-    }
-
-    public void CloseConfig()
-    {
-        settings.SetActive(false);
-    }
-
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void Menu()
+    {
+        Debug.Log("menu");
+        SceneManager.LoadSceneAsync(0);
     }
 }

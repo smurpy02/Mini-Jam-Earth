@@ -12,6 +12,8 @@ public class GoalHealth : Health
     public List<GameObject> deactivate;
     public GameObject deathScreen;
 
+    public Transform cameraTransform;
+
     public override void Die()
     {
         playerMovement.moveEnabled = false;
@@ -27,7 +29,7 @@ public class GoalHealth : Health
     public override void TakeDamage()
     {
         damageSound.Play();
-        Camera.main.transform.DOShakePosition(0.2f);
+        cameraTransform.DOShakePosition(0.2f);
         Vector3 scale = Vector3.one;
         scale.x = (float)currentHealth / max;
         healthBar.transform.localScale = scale;

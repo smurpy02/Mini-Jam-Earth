@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Fragment
   - Blueprint
+  - Core
   layers:
   - Default
   - TransparentFX

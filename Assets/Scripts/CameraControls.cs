@@ -8,6 +8,8 @@ public class CameraControls : MonoBehaviour
     public Rigidbody2D playerBody;
     public BuildStructures buildStructures;
 
+    public Transform camPosition;
+
     public float defaultScale;
     public float movingScale;
     public float buildingScale;
@@ -16,6 +18,8 @@ public class CameraControls : MonoBehaviour
 
     float size;
 
+    bool changeSize = false;
+
     void Start()
     {
         startPosition = transform.position;
@@ -23,27 +27,28 @@ public class CameraControls : MonoBehaviour
 
     void Update()
     {
-        if(size != Camera.main.orthographicSize)
+        if(changeSize)
         {
+            changeSize = false;
             Camera.main.DOOrthoSize(size, 1);
         }
 
         if (buildStructures.isBuilding)
         {
-            transform.position = startPosition;
-            size = buildingScale;
+            camPosition.position = startPosition;
+            if(size != buildingScale) { changeSize = true; size = buildingScale; }
         }
         else
         {
-            transform.position = playerBody.transform.position - Vector3.forward * 10;
+            camPosition.position = playerBody.transform.position - Vector3.forward * 10;
 
             if (playerBody.velocity == Vector2.zero)
             {
-                size = defaultScale;
+                if (size != defaultScale) { changeSize = true; size = defaultScale; }
             }
             else
             {
-                size = movingScale;
+                if (size != movingScale) { changeSize = true; size = movingScale; }
             }
         }
 
