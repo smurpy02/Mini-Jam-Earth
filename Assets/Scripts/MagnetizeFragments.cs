@@ -8,6 +8,9 @@ public class MagnetizeFragments : MonoBehaviour
     public float magnetStrengthDistance;
     public float magnetPickupTime;
 
+    public AudioSource fragmentPickupSound;
+    public AudioSource blueprintPickupSound;
+
     void Update()
     {
         foreach (GameObject fragment in GameObject.FindGameObjectsWithTag("Fragment"))
@@ -41,10 +44,12 @@ public class MagnetizeFragments : MonoBehaviour
 
             if (blueprint)
             {
+                blueprintPickupSound.Play();
                 BuildStructures.blueprints++;
             }
             else
             {
+                fragmentPickupSound.Play();
                 BuildStructures.resources++;
             }
         }

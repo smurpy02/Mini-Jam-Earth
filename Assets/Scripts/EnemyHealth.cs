@@ -12,6 +12,8 @@ public class EnemyHealth : Health
     public int maxFragmentsDropped;
     public int maxBlueprintsDropped;
 
+    public AudioSource takeDamageSound;
+
     public override void Die()
     {
         Instantiate(deathParticles, transform.position, transform.rotation);
@@ -29,5 +31,10 @@ public class EnemyHealth : Health
         }
 
         Destroy(gameObject);
+    }
+
+    public override void TakeDamage()
+    {
+        takeDamageSound.Play();
     }
 }

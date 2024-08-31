@@ -53,11 +53,14 @@ public class BuildStructures : MonoBehaviour
 
     public List<Structure> structures;
 
+    public AudioSource selectSound;
+    public AudioSource placeSound;
+
     // Update is called once per frame
     void Update()
     {
-        movement.enabled = activeStructure == -1;
-        if(!movement.enabled) movement.body.velocity = Vector3.zero;
+        movement.moveEnabled = activeStructure == -1;
+        //if(!movement.enabled) movement.body.velocity = Vector3.zero;
 
         foreach( Structure structure in structures)
         {
@@ -101,7 +104,9 @@ public class BuildStructures : MonoBehaviour
     void SetStructure(int index)
     {
         if (index == -1) { structureGhost.gameObject.SetActive(false);  selectedStructure = null; structureGhost = null; activeStructure = -1; return; }
-        
+
+        selectSound.Play();
+
         Structure structure = structures[index];
 
         if (structureGhost !=null ) structureGhost.gameObject.SetActive(false);
@@ -120,6 +125,8 @@ public class BuildStructures : MonoBehaviour
         placeStructure &= structures[activeStructure].cost <= resources;
 
         if (!placeStructure) return;
+
+        placeSound.Play();
 
         _resources -= structures[activeStructure].cost;
         structures[activeStructure].cost = (int)((float)structures[activeStructure].cost * costMultiplier);

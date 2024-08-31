@@ -7,6 +7,7 @@ public class AlternateOnOff : MonoBehaviour
 {
     public GameObject target;
     public float intervals;
+    public AudioSource energySound;
 
     bool active = true;
 
@@ -22,6 +23,7 @@ public class AlternateOnOff : MonoBehaviour
         active = !active;
 
         target.SetActive(active);
+        energySound.volume = active ? 1 : 0;
 
         StartCoroutine(Switch());
     }

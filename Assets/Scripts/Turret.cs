@@ -6,6 +6,7 @@ public class Turret : MonoBehaviour
 {
     public float fireRate;
     public GameObject projectile;
+    public AudioSource fireSound;
 
     float nextFire;
 
@@ -49,5 +50,6 @@ public class Turret : MonoBehaviour
 
         transform.rotation = Rotations.GetRotation(transform.position, closestEnemy.position);//Quaternion.AngleAxis(angle, Vector3.forward);
         Instantiate(projectile, transform.position, transform.rotation);
+        fireSound.Play();
     }
 }

@@ -6,6 +6,7 @@ using DG.Tweening;
 public class GoalHealth : Health
 {
     public Transform healthBar;
+    public AudioSource damageSound;
 
     public override void Die()
     {
@@ -14,6 +15,7 @@ public class GoalHealth : Health
 
     public override void TakeDamage()
     {
+        damageSound.Play();
         Camera.main.transform.DOShakePosition(0.2f);
         Vector3 scale = Vector3.one;
         scale.x = (float)currentHealth / max;
