@@ -8,7 +8,7 @@ public class TutorialManager : MonoBehaviour
     public WinTimer timer;
     public Rotate earthRotate;
 
-    public GameObject tutorial;
+    public List<GameObject> tutorialPanels;
 
     void Start()
     {
@@ -19,7 +19,11 @@ public class TutorialManager : MonoBehaviour
 
     public void EndTutorial()
     {
-        tutorial.SetActive(false);
+        foreach(GameObject panel in tutorialPanels)
+        {
+            panel.SetActive(false);
+        }
+
         spawnManager.enabled = true;
         timer.enabled = true;
         earthRotate.enabled = true;

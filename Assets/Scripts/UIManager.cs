@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public GameObject status;
-    public GameObject settings;
-
     public void Retry()
     {
         BuildStructures.resources = 50;
