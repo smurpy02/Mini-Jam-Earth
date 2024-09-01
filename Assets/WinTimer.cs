@@ -10,9 +10,12 @@ public class WinTimer : MonoBehaviour
     public Transform bar;
 
     public GameObject explosion;
-    public GoalHealth goalHealth; 
+    public GoalHealth goalHealth;
+    public Transform core;
 
     float timer;
+
+    bool win = false;
 
     void Start()
     {
@@ -27,8 +30,9 @@ public class WinTimer : MonoBehaviour
         scale.x = timer / timeToWin;
         bar.localScale = scale;
 
-        if(timer <= 0)
+        if(timer <= 0 && !win)
         {
+            win = true;
             StartCoroutine(Win());
         }
     }
@@ -36,7 +40,7 @@ public class WinTimer : MonoBehaviour
     IEnumerator Win()
     {
         goalHealth.enabled = false;
-        Instantiate(explosion, transform.position, Quaternion.identity) ;
+        Instantiate(explosion, core.position, Quaternion.identity) ;
 
         yield return new WaitForSeconds(6);
 

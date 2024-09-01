@@ -1160,6 +1160,7 @@ MonoBehaviour:
   bar: {fileID: 617916283}
   explosion: {fileID: 2834274436865315736, guid: 5be4771c6f9fdff4b82d664789f878a5, type: 3}
   goalHealth: {fileID: 1591957430}
+  core: {fileID: 1305738041}
 --- !u!1 &378519708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1964,8 +1965,8 @@ MonoBehaviour:
   playerBody: {fileID: 1777106681}
   buildStructures: {fileID: 757859918}
   camPosition: {fileID: 553922225}
-  defaultScale: 3
-  movingScale: 2
+  defaultScale: 4
+  movingScale: 3
   buildingScale: 5
 --- !u!1 &528023297
 GameObject:
@@ -15595,9 +15596,9 @@ MonoBehaviour:
     firstSpawn: 180
     nextSpawn: 0
   - spawnRate: 6
-    spawnIncreaseRate: 0.95
+    spawnIncreaseRate: 0.97
     minSpawnRate: 0.6
-    enemy: {fileID: 8768072687331875443, guid: 3ba375ddd3661ad4ea49afd18a12ffc9, type: 3}
+    enemy: {fileID: 3715388032891401677, guid: a1c622e01156d5a4ca838da903b29cbc, type: 3}
     firstSpawn: 220
     nextSpawn: 0
   - spawnRate: 1e+9
